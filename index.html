@@ -155,6 +155,7 @@
       border: 1px dashed #cbd5e1;
       border-radius: 8px;
       padding: 10px;
+      display: none;
     }
 
     .question-img {
@@ -438,7 +439,7 @@
       <span class="topic-badge" id="topic-badge">Tema</span>
     </div>
 
-    <!-- Container da Imagem de Suporte da Questão -->
+    <!-- Container da Imagem de Suporte (Apenas Q1 a Q6) -->
     <div class="question-image-container" id="image-container">
       <img id="question-image" src="" alt="Imagem da questão" class="question-img" onclick="openZoomImage()">
       <span class="image-hint">Clique na imagem para ampliar</span>
@@ -502,14 +503,14 @@
   </div>
 
   <script>
-    // BASE DE DADOS COM AS 20 QUESTÕES E REFERÊNCIA ÀS IMAGENS SEM UNDERLINE
+    // BASE DE DADOS COM AS 20 QUESTÕES (IMAGENS APENAS NAS QUESTÕES 1 A 6)
     const rawQuestions = [
-      // CHAPTER 13: HEALTH ISSUES (Foto: pg13.png)
+      // APENAS ESTAS QUESTÕES POSSUEM IMAGEM (pg13.png e pg13perspec.png)
       {
         id: 1,
         topic: "Health Issues",
         image: "pg13.png",
-        statement: "De acordo com as imagens de problemas de saúde da página 13, qual expressão em inglês descreve a sensação dolorosa na garganta representada na foto número <b>2</b>?",
+        statement: "Analisando a foto número <b>2</b> da primeira imagem, qual condição de saúde em inglês está sendo representada?",
         correctKey: "B",
         options: {
           A: "Headache",
@@ -518,13 +519,13 @@
           D: "Toothache",
           E: "Backache"
         },
-        justification: "A foto 2 mostra uma pessoa tocando o pescoço, indicando dor de garganta, que em inglês é 'sore throat'."
+        justification: "A foto 2 mostra uma pessoa tocando o pescoço/garganta, representando 'sore throat' (dor de garganta)."
       },
       {
         id: 2,
         topic: "Health Issues",
         image: "pg13.png",
-        statement: "Analisando as figuras da página 13, qual o termo correto em inglês para a condição mostrada na imagem <b>4</b>, onde o rapaz segura o abdômen?",
+        statement: "Na primeira imagem, qual termo em inglês descreve o problema de saúde indicado na foto <b>4</b>?",
         correctKey: "C",
         options: {
           A: "Fever",
@@ -533,13 +534,13 @@
           D: "Toothache",
           E: "Headache"
         },
-        justification: "A figura 4 retrata uma dor no estômago / dor abdominal, expressa pelo vocábulo 'stomachache'."
+        justification: "A foto 4 mostra o rapaz segurando o abdômen, representando 'stomachache' (dor de estômago)."
       },
       {
         id: 3,
         topic: "Health Issues",
         image: "pg13.png",
-        statement: "Na imagem <b>6</b> da página 13, a garota segura a bochecha com expressão de dor. Qual é a denominação em inglês dessa dor de dente?",
+        statement: "Observando a foto <b>6</b> na primeira imagem, qual é o nome em inglês da dor sentida pela garota?",
         correctKey: "D",
         options: {
           A: "Sore throat",
@@ -548,13 +549,13 @@
           D: "Toothache",
           E: "Fever"
         },
-        justification: "A dor de dente é representada na foto 6 e traduzida como 'toothache'."
+        justification: "A foto 6 mostra a garota segurando a bochecha, indicando 'toothache' (dor de dente)."
       },
       {
         id: 4,
         topic: "Health Issues",
         image: "pg13.png",
-        statement: "A imagem <b>5</b> mostra um rapaz com a mão na região lombar. Qual termo em inglês corresponde a essa dor nas costas?",
+        statement: "A foto <b>5</b> da primeira imagem indica qual sintoma físico em inglês?",
         correctKey: "E",
         options: {
           A: "Fever",
@@ -563,15 +564,13 @@
           D: "Sore throat",
           E: "Backache"
         },
-        justification: "A dor nas costas é identificada na foto 5 e chamada em inglês de 'backache'."
+        justification: "A foto 5 retrata a pessoa colocando a mão na região lombar, representando 'backache' (dor nas costas)."
       },
-
-      // PERSPECTIVES - HEALTH CONCERNS (Foto: pg13perspec.png)
       {
         id: 5,
         topic: "Health Concerns",
         image: "pg13perspec.png",
-        statement: "Com base no infográfico 'National Poll On Children's Health' da página 13 (Perspectives), qual foi a maior preocupação de saúde infantil em 2013 mencionada no topo da lista?",
+        statement: "Analisando o infográfico 'National Poll On Children's Health' (segunda imagem), qual foi a maior preocupação de saúde infantil destacada no topo da lista de 2013?",
         correctKey: "A",
         options: {
           A: "Childhood obesity",
@@ -580,154 +579,150 @@
           D: "Internet safety",
           E: "Depression"
         },
-        justification: "O item #1 do ranking de 2013 é 'Childhood obesity' (obesidade infantil), com 38% de classificação como grande problema."
+        justification: "O item #1 do gráfico de barras de 2013 é 'Childhood obesity' (38%)."
       },
       {
         id: 6,
         topic: "Health Concerns",
         image: "pg13perspec.png",
-        statement: "No exercício 2 da página 13 (Perspectives), associa-se a palavra em inglês <b>CONCERN</b> ao seu significado. Qual é a tradução em português desse termo no contexto apresentado?",
+        statement: "No infográfico da segunda imagem, os termos <b>issue</b> e <b>concern</b> aparecem com frequência. Qual é o significado em português dessas palavras nesse contexto?",
         correctKey: "C",
         options: {
-          A: "Problema",
-          B: "Pesquisa",
-          C: "Preocupação",
-          D: "Segurança",
-          E: "Doença"
+          A: "Sintoma e diagnóstico",
+          B: "Pesquisa e estatística",
+          C: "Problema e preocupação",
+          D: "Segurança e risco",
+          E: "Prevenção e tratamento"
         },
-        justification: "A palavra 'concern' traduz-se diretamente como 'preocupação'."
+        justification: "No contexto da pesquisa sobre saúde, 'issue' significa problema/questão e 'concern' significa preocupação."
       },
 
-      // CHAPTER 14: RESOURCES & WWF CAMPAIGN (Foto: pg14.png)
+      // A PARTIR DAQUI: QUESTÕES TOTALMENTE CONCEPTUAIS (SEM IMAGEM)
       {
         id: 7,
-        topic: "Resources & Campaign",
-        image: "pg14.png",
-        statement: "Observando a imagem da campanha do WWF da página 14, a frase do título é 'Before it's too late'. Qual é a tradução dessa frase em português?",
+        topic: "Environmental Concepts",
+        image: null,
+        statement: "O termo <b>DEFORESTATION</b> é um grande problema ambiental associado à destruição de ecossistemas. Qual é a definição precisa em inglês desse conceito?",
         correctKey: "B",
         options: {
-          A: "Antes que tudo acabe",
+          A: "The planting of new trees in empty agricultural fields.",
+          B: "The clearing or thinning of forests by human activity.",
+          C: "The natural growth of wild plants near river banks.",
+          D: "The process of recycling paper and wood materials.",
+          E: "The accumulation of plastic waste in forested areas."
+        },
+        justification: "'Deforestation' (desmatamento) é o ato de cortar ou remover grandes áreas de floresta pela ação humana."
+      },
+      {
+        id: 8,
+        topic: "Environmental Concepts",
+        image: null,
+        statement: "A expressão em inglês <b>BEFORE IT'S TOO LATE</b> é frequentemente usada em campanhas de conscientização ecológica. Qual é o significado dessa frase em português?",
+        correctKey: "B",
+        options: {
+          A: "Antes de acontecer tudo de novo",
           B: "Antes que seja tarde demais",
-          C: "Quando for tarde demais",
-          D: "Enquanto ainda há tempo",
-          E: "Antes que seja necessário"
+          C: "Enquanto ainda houver esperança",
+          D: "Depois que o dano for irreparável",
+          E: "Apenas quando for estritamente necessário"
         },
         justification: "'Before it's too late' traduz-se literalmente como 'Antes que seja tarde demais'."
       },
       {
-        id: 8,
-        topic: "Resources & Campaign",
-        image: "pg14.png",
-        statement: "Na campanha ambiental do WWF (página 14), a vegetação das árvores é retratada no formato de qual órgão humano para alertar sobre o desmatamento?",
-        correctKey: "D",
-        options: {
-          A: "Coração (Heart)",
-          B: "Cérebro (Brain)",
-          C: "Estômago (Stomach)",
-          D: "Pulmões (Lungs)",
-          E: "Rins (Kidneys)"
-        },
-        justification: "A floresta vista do alto forma o desenho de dois pulmões ('lungs'), mostrando que o desmatamento prejudica o 'respiro' da Terra."
-      },
-
-      // CHAPTER 14 PERSPECTIVES: CROSSWORD & VOCABULARY (Foto: pg14perspec.png)
-      {
         id: 9,
         topic: "Natural Resources",
-        image: "pg14perspec.png",
-        statement: "Na cruzadinha da página 14 (Perspectives), qual palavra corresponde à definição 'A hydrocarbon-based fuel, such as petroleum, coal, or natural gas'?",
+        image: null,
+        statement: "Qual das opções a seguir melhor define o conceito em inglês de <b>FOSSIL FUEL</b>?",
         correctKey: "B",
         options: {
-          A: "Raw material",
-          B: "Fossil fuel",
-          C: "Demand",
-          D: "Damage",
-          E: "Resource"
+          A: "Clean energy created by wind turbines and solar panels.",
+          B: "Hydrocarbon-based fuel formed from organic matter, like petroleum or coal.",
+          C: "Water stored inside underground reservoirs and lakes.",
+          D: "Unprocessed wood collected directly from natural forests.",
+          E: "Energy produced exclusively by recycling organic scraps."
         },
-        justification: "Combustíveis formados por hidrocarbonetos (petróleo, carvão e gás natural) são chamados de 'fossil fuel' (combustível fóssil)."
+        justification: "'Fossil fuel' (combustível fóssil) é o combustível de hidrocarboneto formado por matéria orgânica (petróleo, carvão, gás natural)."
       },
       {
         id: 10,
         topic: "Natural Resources",
-        image: "pg14perspec.png",
-        statement: "No exercício 1 da página 14 (Perspectives), qual termo preenche a definição de 'Destruction or a loss in value, in usefulness'?",
-        correctKey: "C",
+        image: null,
+        statement: "No estudo de recursos e sustentabilidade, como é definida a expressão <b>RAW MATERIAL</b> em inglês?",
+        correctKey: "A",
         options: {
-          A: "Supply",
-          B: "Survive",
-          C: "Damage",
-          D: "Land",
-          E: "Demand"
+          A: "An unprocessed natural product used in manufacturing or industrial processing.",
+          B: "A completely recycled material ready for immediate consumer use.",
+          C: "Industrial waste that cannot be reused or transformed.",
+          D: "Synthetic chemical produced in high-technology laboratories.",
+          E: "The final product sold in retail stores to customers."
         },
-        justification: "'Damage' significa dano ou destruição, correspondendo à perda de valor ou utilidade."
+        justification: "'Raw material' (matéria-prima) é o produto natural em estado bruto/não processado utilizado na indústria."
       },
       {
         id: 11,
         topic: "Natural Resources",
-        image: "pg14perspec.png",
-        statement: "Na frase 'An unprocessed natural product used in manufacture' da cruzadinha (página 14), qual conceito está sendo definido?",
-        correctKey: "A",
+        image: null,
+        statement: "No vocabulário ambiental, qual é o significado do substantivo <b>DAMAGE</b>?",
+        correctKey: "C",
         options: {
-          A: "Raw material",
-          B: "Fossil fuel",
-          C: "Resource",
-          D: "Supply",
-          E: "Demand"
+          A: "An urgent need for raw materials in a factory.",
+          B: "The act of keeping an ecosystem healthy and protected.",
+          C: "Physical harm that impairs the value, usefulness, or normal function of something.",
+          D: "The continuous supply of clean water to urban areas.",
+          E: "The process of converting trash into energy."
         },
-        justification: "Produtos naturais não processados usados na fabricação industrial são chamados de 'raw material' (matéria-prima)."
+        justification: "'Damage' (dano/prejuízo) é o dano físico que prejudica o valor, a utilidade ou o funcionamento de algo."
       },
-
-      // CHAPTER 15: PERSPECTIVES & FOOTPRINTS (Foto: pg15.png)
       {
         id: 12,
         topic: "Environment Terms",
-        image: "pg15.png",
-        statement: "Na página 15 (exercício 2), qual é a definição correta em inglês para a palavra <b>BIODIVERSITY</b>?",
+        image: null,
+        statement: "Qual das opções apresenta a definição formal em inglês para a palavra <b>BIODIVERSITY</b>?",
         correctKey: "A",
         options: {
-          A: "The variability among living organisms on the Earth.",
-          B: "The act or process of consuming resources.",
-          C: "The natural environment in which a species lives.",
-          D: "Capable of being continued with minimal long-term effect.",
-          E: "The condition of being in danger or at risk."
+          A: "The variability and variety among living organisms on Earth.",
+          B: "The total amount of non-renewable energy consumed by a city.",
+          C: "A designated area where industrial waste is incinerated.",
+          D: "The study of human populations living near coastal regions.",
+          E: "The process of transforming plastic bottles into new products."
         },
-        justification: "Biodiversity (biodiversidade) refere-se à variabilidade entre os organismos vivos no planeta Terra."
+        justification: "'Biodiversity' (biodiversidade) refere-se à variedade e variabilidade dos seres vivos na Terra."
       },
       {
         id: 13,
         topic: "Environment Terms",
-        image: "pg15.png",
-        statement: "De acordo com as associações de vocabulário da página 15, o que define a palavra <b>HABITAT</b>?",
+        image: null,
+        statement: "Em ecologia, qual é o conceito exato atribuído à palavra <b>HABITAT</b>?",
         correctKey: "D",
         options: {
-          A: "A way of life or living of a person or group.",
-          B: "The condition of being in danger.",
-          C: "The totality of the natural world excluding humans.",
-          D: "The natural environment in which a species or group of species lives.",
-          E: "The process of consuming products."
+          A: "A daily habit or routine performed by human beings.",
+          B: "The process of adapting a species to urban domestic environments.",
+          C: "The total weight of organic waste produced by a community.",
+          D: "The natural environment in which a particular species or population lives.",
+          E: "A greenhouse built for growing rare exotic plants."
         },
-        justification: "Habitat é o ambiente natural no qual uma espécie ou grupo de espécies vive."
+        justification: "'Habitat' é o ambiente natural no qual uma determinada espécie de planta ou animal vive."
       },
       {
         id: 14,
         topic: "Word Transformation",
-        image: "pg15.png",
-        statement: "No exercício 3 da página 15, é solicitada a transformação do substantivo <b>CONSUMPTION</b> em um verbo em inglês. Qual é a forma verbal correta?",
+        image: null,
+        statement: "Em termos de estrutura da língua inglesa, qual é o verbo referente ao substantivo <b>CONSUMPTION</b> (consumo)?",
         correctKey: "E",
         options: {
-          A: "Consuming",
-          B: "Consumable",
-          C: "Consumptive",
-          D: "Consumer",
+          A: "Consumable",
+          B: "Consumptive",
+          C: "Consumer",
+          D: "Consuming",
           E: "Consume"
         },
-        justification: "O verbo derivado do substantivo 'consumption' (consumo) é 'consume' (consumir)."
+        justification: "O verbo da família da palavra 'consumption' é 'consume' (consumir)."
       },
       {
         id: 15,
         topic: "Word Transformation",
-        image: "pg15.png",
-        statement: "Ainda no exercício 3 da página 15, qual é o adjetivo em inglês correspondente ao substantivo <b>ENVIRONMENT</b>?",
+        image: null,
+        statement: "Qual é a forma adjetiva correspondente ao substantivo <b>ENVIRONMENT</b> (meio ambiente)?",
         correctKey: "B",
         options: {
           A: "Environing",
@@ -736,77 +731,73 @@
           D: "Environed",
           E: "Environmentalism"
         },
-        justification: "A forma adjetiva do substantivo 'environment' (meio ambiente) é 'environmental' (ambiental)."
+        justification: "O adjetivo derivado de 'environment' é 'environmental' (ambiental)."
       },
-
-      // CHAPTER 15: INSIGHTS & TREEHUGGER TEXT (Foto: pg15insights.png)
       {
         id: 16,
-        topic: "Reading & Footprint",
-        image: "pg15insights.png",
-        statement: "No artigo da Treehugger (página 15 - Insights), o texto explica o conceito de <b>ecological footprint</b>. Com base nas opções do exercício 1, onde esse texto foi originalmente publicado?",
+        topic: "Ecological Footprint",
+        image: null,
+        statement: "O conceito de <b>ECOLOGICAL FOOTPRINT</b> (pegada ecológica) mede principalmente qual aspecto da relação entre humanos e o planeta?",
         correctKey: "C",
         options: {
-          A: "In a medical printed magazine.",
-          B: "In a science textbook for primary school.",
-          C: "On a web page / website.",
-          D: "In a newspaper advertisement.",
-          E: "In a public library poster."
+          A: "The speed at which cities construct new highways.",
+          B: "The physical size of human feet compared to animal tracks.",
+          C: "The impact of human consumption on Earth's natural resources and capacity to regenerate.",
+          D: "The amount of rain water collected in municipal reservoirs.",
+          E: "The total number of endangered plant species in a rainforest."
         },
-        justification: "O texto traz a interface do site Treehugger, confirmando no exercício 1 que 'The text is on a web page'."
+        justification: "A pegada ecológica avalia o impacto do consumo humano sobre os recursos naturais e a capacidade do planeta de regenerá-los."
       },
       {
         id: 17,
-        topic: "Reading & Footprint",
-        image: "pg15insights.png",
-        statement: "Consultando o 'Language Tip' da página 15 (Insights), qual é a tradução em português fornecida para a palavra <b>FOOTPRINT</b>?",
+        topic: "Vocabulary Context",
+        image: null,
+        statement: "Ao analisar a expressão 'individual or collective footprint', a palavra <b>FOOTPRINT</b> é traduzida no contexto ambiental como:",
         correctKey: "E",
         options: {
-          A: "Poluição",
-          B: "Consumo",
-          C: "Impacto",
+          A: "Passo",
+          B: "Trilha",
+          C: "Marcador",
           D: "Caminho",
           E: "Pegada"
         },
-        justification: "A caixa de vocabulario 'Language Tip' traduz explicitamente 'footprint' como 'pegada'."
+        justification: "No contexto de ecologia e impacto ambiental, 'footprint' traduz-se como 'pegada'."
       },
-
-      // CHAPTER 16: SUSTAINABILITY & 5 RS (Fotos: pg16.png e pg16perspec.png)
       {
         id: 18,
         topic: "Sustainability & 5 Rs",
-        image: "pg16perspec.png",
-        statement: "Na página 16 (Perspectives - Ex. 1), qual alternativa contém a melhor definição para o verbo <b>SUSTAIN</b>?",
+        image: null,
+        statement: "Qual das opções apresenta a definição completa do verbo em inglês <b>SUSTAIN</b>?",
         correctKey: "A",
         options: {
-          A: "To keep in existence; maintain, continue, or prolong; to give support.",
-          B: "To alarm, scare, or arouse fear in a population.",
-          C: "To damage the existence of something by forceful actions.",
-          D: "To destroy completely without leaving any trace.",
-          E: "To consume natural resources until they run out."
+          A: "To keep in existence; maintain, continue, prolong, or give support to something.",
+          B: "To cause severe damage to an ecosystem through pollution.",
+          C: "To deplete resources until they are completely exhausted.",
+          D: "To replace organic products with artificial plastic substitutes.",
+          E: "To produce large quantities of industrial garbage."
         },
-        justification: "'Sustain' (sustentar/manter) significa manter em existência, continuar, prolongar ou dar suporte."
+        justification: "'Sustain' (sustentar/manter) significa conservar em existência, apoiar, prolongar ou manter algo em funcionamento."
       },
       {
         id: 19,
         topic: "Sustainability & 5 Rs",
-        image: "pg16perspec.png",
-        statement: "Nos conceitos dos 5 Rs da Sustentabilidade na página 16 (exercício 3), qual ação é associada a 'products that harm our health and the environment'?",
+        image: null,
+        statement: "Dentre os princípios dos 5 Rs da sustentabilidade, qual verbo em inglês representa a atitude de <b>NÃO ACEITAR OU EVITAR</b> produtos que causam danos à saúde e ao meio ambiente?",
         correctKey: "D",
         options: {
-          A: "We must rot",
-          B: "We must recycle",
-          C: "We must reuse",
-          D: "We must refuse",
-          E: "We must reduce"
+          A: "Recycle",
+          B: "Reuse",
+          C: "Reduce",
+          D: "Refuse",
+          E: "Rot"
         },
-        justification: "Devemos RECUSAR ('refuse') produtos que prejudicam a nossa saúde e o meio ambiente."
+        justification: "O princípio de recusar produtos nocivos é representado pelo verbo 'refuse'."
       },
       {
         id: 20,
         topic: "Sustainability & 5 Rs",
-        image: "pg16perspec.png",
-        statement: "Ainda sobre os 5 Rs (página 16), qual verbo completa corretamente a ideia de dar destinação adequada a 'organic scraps' (restos orgânicos)?",
+        image: null,
+        statement: "No contexto da sustentabilidade dos 5 Rs, qual verbo refere-se ao processo natural de compostagem de restos orgânicos (<b>organic scraps</b>)?",
         correctKey: "B",
         options: {
           A: "Refuse",
@@ -815,7 +806,7 @@
           D: "Reuse",
           E: "Recycle"
         },
-        justification: "O termo 'rot' (decompor/compostar) relaciona-se diretamente com o tratamento de restos orgânicos ('organic scraps')."
+        justification: "O verbo 'rot' (decompor/compostar) refere-se ao destino ecológico correto para restos de alimentos e matéria orgânica."
       }
     ];
 
@@ -910,7 +901,7 @@
       document.getElementById('topic-badge').innerText = q.topic;
       document.getElementById('statement-text').innerHTML = q.statement;
 
-      // Renderizar Imagem de Suporte com tratamento de erro
+      // Renderizar Imagem de Suporte apenas se a questão possuir atributo image
       const imgElement = document.getElementById('question-image');
       const imgContainer = document.getElementById('image-container');
       if (q.image) {
@@ -926,6 +917,7 @@
         };
       } else {
         imgContainer.style.display = 'none';
+        imgElement.src = '';
       }
 
       const optionsContainer = document.getElementById('options-list');
@@ -971,8 +963,7 @@
       const feedbackBox = document.getElementById('feedback-box');
       const feedbackText = document.getElementById('feedback-text');
       if (isChecked) {
-        let textJust = q.justification;
-        feedbackText.innerText = textJust;
+        feedbackText.innerText = q.justification;
         feedbackBox.classList.add('show');
       } else {
         feedbackBox.classList.remove('show');
@@ -1041,7 +1032,7 @@
 
     function openZoomImage() {
       const currentImgSrc = document.getElementById('question-image').src;
-      if (currentImgSrc) {
+      if (currentImgSrc && currentImgSrc !== '') {
         document.getElementById('zoomed-image').src = currentImgSrc;
         document.getElementById('image-modal').style.display = 'flex';
       }
@@ -1075,7 +1066,6 @@
       const totalQuestions = processedQuestions.length;
       const totalIncorrect = totalQuestions - totalCorrect;
       
-      // Nota final valendo 10,0 (cada questão equivale a 0,5 ponto)
       const score = (totalCorrect * 0.5).toFixed(1);
 
       const correctPct = Math.round((totalCorrect / totalQuestions) * 100);
@@ -1098,7 +1088,7 @@
         if (errorPct > 25) {
           needsRevision = true;
           const li = document.createElement('li');
-          let recommendationText = `<strong>${topic}:</strong> Recomenda-se revisar o vocabulário das páginas referentes a este tema (Erros: ${Math.round(errorPct)}%).`;
+          let recommendationText = `<strong>${topic}:</strong> Recomenda-se revisar os conceitos deste tema (Erros: ${Math.round(errorPct)}%).`;
           li.innerHTML = recommendationText;
           diagnosticsList.appendChild(li);
         }
@@ -1106,7 +1096,7 @@
 
       if (!needsRevision) {
         const li = document.createElement('li');
-        li.innerHTML = "<strong>Parabéns!</strong> Excelente desempenho. Você demonstrou pleno domínio do vocabulário das unidades!";
+        li.innerHTML = "<strong>Parabéns!</strong> Excelente desempenho. Você demonstrou pleno domínio do vocabulário e dos conceitos!";
         diagnosticsList.appendChild(li);
       }
 
