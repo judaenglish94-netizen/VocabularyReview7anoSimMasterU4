@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado de Vocabulário de Inglês - Capítulos 13 a 16</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #002147;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Scrollbar Estilizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dc2626;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b91c1c;
+    }
+
+    /* Header e Navegação */
+    header {
+      width: 100%;
+      max-width: 850px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      max-width: 180px;
+      height: auto;
+      margin-bottom: 15px;
+      display: block;
+      border: 3px solid #dc2626;
+      border-radius: 10px;
+      background-color: #001026;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .nav-grid {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 2px solid #ffffff;
+      background-color: #001530;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background-color: #003366;
+    }
+
+    .nav-btn.active {
+      border-color: #f59e0b;
+      box-shadow: 0 0 8px #f59e0b;
+    }
+
+    .nav-btn.correct {
+      background-color: #16a34a !important;
+      border-color: #16a34a !important;
+      color: #fff;
+    }
+
+    .nav-btn.incorrect {
+      background-color: #dc2626 !important;
+      border-color: #dc2626 !important;
+      color: #fff;
+    }
+
+    /* Container Principal */
+    .container {
+      background-color: #ffffff;
+      border: 3px solid #dc2626;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 850px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .question-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .topic-badge {
+      background-color: #dc2626;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Enunciado */
+    .statement {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #000;
+      font-weight: 500;
+    }
+
+    /* Opções de Resposta */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 15px;
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+      background-color: #fff;
+    }
+
+    .option-item:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .option-item input[type="radio"] {
+      margin-top: 4px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    .option-text {
+      font-size: 1rem;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    .option-item.selected {
+      border-color: #dc2626;
+      background-color: #fef2f2;
+    }
+
+    .option-item.correct-bg {
+      background-color: #dcfce7 !important;
+      border-color: #16a34a !important;
+    }
+
+    .option-item.incorrect-bg {
+      background-color: #fee2e2 !important;
+      border-color: #dc2626 !important;
+    }
+
+    /* Justificativa / Feedback */
+    .feedback-box {
+      display: none;
+      background-color: #f8fafc;
+      border-left: 4px solid #0284c7;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #000;
+    }
+
+    .feedback-box.show {
+      display: block;
+    }
+
+    .feedback-box strong {
+      color: #0284c7;
+    }
+
+    /* Botões de Ação */
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn {
+      background-color: #dc2626;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      flex: 1;
+      max-width: 150px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #b91c1c;
+    }
+
+    .btn:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .btn-finish {
+      background-color: #16a34a;
+      max-width: 200px;
+    }
+
+    .btn-finish:hover {
+      background-color: #15803d;
+    }
+
+    /* Modal de Resultado Final */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      border: 3px solid #dc2626;
+      border-radius: 10px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      color: #000;
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .modal-header h2 {
+      color: #dc2626;
+      font-size: 1.8rem;
+    }
+
+    .score-display {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      background-color: #f8fafc;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .stat-value.correct { color: #16a34a; }
+    .stat-value.incorrect { color: #dc2626; }
+
+    .diagnostics-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .diagnostics-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      .action-buttons {
+        flex-direction: row;
+      }
+      .btn {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="master.png" alt="Logo Master" class="logo">
+    <h1>Revisão de Vocabulário - Capítulos 13 a 16</h1>
+    <div class="nav-grid" id="nav-grid">
+      <!-- Botões de 1 a 20 gerados dinamicamente -->
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="question-header">
+      <span class="question-title" id="question-title">Questão 1 de 20</span>
+      <span class="topic-badge" id="topic-badge">Tema</span>
+    </div>
+
+    <!-- Enunciado -->
+    <div class="statement" id="statement-text">
+      <!-- Conteúdo da questão carregado aqui -->
+    </div>
+
+    <!-- Opções -->
+    <div class="options-list" id="options-list">
+      <!-- Alternativas carregadas aqui -->
+    </div>
+
+    <!-- Justificativa -->
+    <div class="feedback-box" id="feedback-box">
+      <strong>Explicação:</strong> <span id="feedback-text"></span>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="action-buttons">
+      <button class="btn" id="btn-next" onclick="nextQuestion()">Next</button>
+      <button class="btn" id="btn-check" onclick="checkAnswer()">Check</button>
+      <button class="btn" id="btn-prev" onclick="prevQuestion()">Previous</button>
+    </div>
+  </main>
+
+  <!-- Modal de Resultado Final -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Resultado do Exercício</h2>
+      </div>
+      <div class="score-display" id="score-display">
+        Sua Nota: 0,0 / 10,0
+      </div>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div>Acertos</div>
+          <div class="stat-value correct" id="stat-correct">0 (0%)</div>
+        </div>
+        <div class="stat-item">
+          <div>Erros</div>
+          <div class="stat-value incorrect" id="stat-incorrect">0 (0%)</div>
+        </div>
+      </div>
+      <div class="diagnostics-title">Diagnóstico por Tópico:</div>
+      <ul class="diagnostics-list" id="diagnostics-list">
+        <!-- Diagnóstico dinâmico -->
+      </ul>
+      <div class="modal-footer" style="text-align: center;">
+        <button class="btn btn-finish" onclick="restartQuiz()">Refazer Exercício</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // BASE DE DADOS COM AS 20 QUESTÕES OBJETIVAS (Vocabulário das imagens dos Capítulos 13 a 16)
+    const rawQuestions = [
+      // TEMA 1: HEALTH ISSUES (Capítulo 13)
+      {
+        id: 1,
+        topic: "Health Issues",
+        statement: "Na página 1 (Chapter 13), a imagem de número 2 ilustra uma pessoa segurando o pescoço com dor. Qual é o problema de saúde correspondente?",
+        correctKey: "B",
+        options: {
+          A: "Fever",
+          B: "Sore throat",
+          C: "Toothache",
+          D: "Backache",
+          E: "Stomachache"
+        },
+        justification: "Sore throat significa dor de garganta. Na imagem 2, a pessoa está expressando dor na região do pescoço e garganta."
+      },
+      {
+        id: 2,
+        topic: "Health Issues",
+        statement: "Ao analisar a imagem número 6 do Capítulo 13, vemos uma jovem tocando a bochecha com expressão de dor. Qual é a condição correta?",
+        correctKey: "D",
+        options: {
+          A: "Headache",
+          B: "Diarrhea",
+          C: "Fever",
+          D: "Toothache",
+          E: "Backache"
+        },
+        justification: "Toothache significa dor de dente. A imagem 6 mostra a garota segurando a bochecha com incômodo dente/mandíbula."
+      },
+      {
+        id: 3,
+        topic: "Health Issues",
+        statement: "No exercício 1 do Capítulo 13, a imagem 1 mostra uma pessoa acamada com termômetro e lencinhos. Assinale a palavra correspondente:",
+        correctKey: "A",
+        options: {
+          A: "Fever",
+          B: "Stomachache",
+          C: "Sore throat",
+          D: "Headache",
+          E: "Backache"
+        },
+        justification: "Fever é febre. A imagem 1 representa uma pessoa doente na cama aferindo a temperatura corporal."
+      },
+      {
+        id: 4,
+        topic: "Health Issues",
+        statement: "Qual dos seguintes vocábulos do Capítulo 13 descreve uma dor na região lombar ou nas costas (como visto na foto 5)?",
+        correctKey: "C",
+        options: {
+          A: "Headache",
+          B: "Stomachache",
+          C: "Backache",
+          D: "Toothache",
+          E: "Sore throat"
+        },
+        justification: "Backache é dor nas costas ou lombalgia. A imagem 5 mostra o rapaz colocando a mão na região lombar."
+      },
+
+      // TEMA 2: PERSPECTIVES & INFOGRAPHICS (Capítulo 13 / Perspectives)
+      {
+        id: 5,
+        topic: "Infographics & Vocabulary",
+        statement: "No infográfico da Universidade de Michigan (2013), qual foi classificado como o problema nº 1 na saúde das crianças ('Top 1 U.S. Children's Health Concern')?",
+        correctKey: "E",
+        options: {
+          A: "Drug abuse",
+          B: "Bullying",
+          C: "Smoking & tobacco use",
+          D: "Internet safety",
+          E: "Childhood obesity"
+        },
+        justification: "Childhood obesity (obesidade infantil) apareceu em 1º lugar com 38% de preocupação dos pais na pesquisa de 2013."
+      },
+      {
+        id: 6,
+        topic: "Infographics & Vocabulary",
+        statement: "No exercício 2 da página de Perspectivas, os alunos deviam traduzir termos do texto. Qual é a tradução correta para a palavra <b>POLL</b>?",
+        correctKey: "A",
+        options: {
+          A: "Pesquisa / Enquete",
+          B: "Problema grave",
+          C: "Preocupação",
+          D: "Segurança na internet",
+          E: "Aterro sanitário"
+        },
+        justification: "Poll significa pesquisa de opinião ou enquete (como no título 'National Poll On Children's Health')."
+      },
+      {
+        id: 7,
+        topic: "Infographics & Vocabulary",
+        statement: "Assinale a correspondência em português para o substantivo <b>CONCERN</b>, muito presente nos infográficos sobre saúde infantil:",
+        correctKey: "C",
+        options: {
+          A: "Comportamento",
+          B: "Solução",
+          C: "Preocupação / Inquietação",
+          D: "Proteção física",
+          E: "Doença transmissível"
+        },
+        justification: "Concern significa preocupação (como na frase 'Parents very concerned that health issues may impact their children')."
+      },
+
+      // TEMA 3: WWF CAMPAIGN & NATURAL RESOURCES (Capítulo 14)
+      {
+        id: 8,
+        topic: "Natural Resources",
+        statement: "Na campanha da WWF de 2008 (Capítulo 14), a imagem mostra uma floresta em formato de pulmão sofrendo desmatamento. O que significa o slogan <b>'Before it's too late'</b>?",
+        correctKey: "B",
+        options: {
+          A: "Depois que tudo terminar",
+          B: "Antes que seja tarde demais",
+          C: "Enquanto ainda há perigo",
+          D: "Sempre tarde da noite",
+          E: "Nunca é tarde para tentar"
+        },
+        justification: "'Before it's too late' traduz-se como 'Antes que seja tarde demais', um alerta sobre a destruição da natureza."
+      },
+      {
+        id: 9,
+        topic: "Natural Resources",
+        statement: "Na lista de elementos observados na foto de abertura do Capítulo 14, qual destas palavras em inglês significa <b>'desmatamento'</b>?",
+        correctKey: "D",
+        options: {
+          A: "Horizon",
+          B: "Forest",
+          C: "Field",
+          D: "Deforestation",
+          E: "Clouds"
+        },
+        justification: "Deforestation significa desmatamento ou desflorestamento, visível na área avermelhada e desmatada da foto."
+      },
+
+      // TEMA 4: CROSSWORD & RESOURCES (Capítulo 14 - Perspectives)
+      {
+        id: 10,
+        topic: "Resources Vocabulary",
+        statement: "Pelas definições da cruzadinha do Capítulo 14, qual termo corresponde a 'A hydrocarbon-based fuel, such as petroleum, coal, or natural gas'?",
+        correctKey: "A",
+        options: {
+          A: "Fossil fuel",
+          B: "Raw material",
+          C: "Resource",
+          D: "Supply",
+          E: "Demand"
+        },
+        justification: "Fossil fuel (combustível fósseis) é o combustível baseado em hidrocarbonetos derivados de matéria orgânica antiga (petróleo, carvão, gás)."
+      },
+      {
+        id: 11,
+        topic: "Resources Vocabulary",
+        statement: "Na cruzadinha, a dica 'An unprocessed natural product used in manufacture' refere-se a qual conceito ambiental?",
+        correctKey: "E",
+        options: {
+          A: "Land",
+          B: "Damage",
+          C: "Resource",
+          D: "Survive",
+          E: "Raw material"
+        },
+        justification: "Raw material significa matéria-prima (produto natural bruto não processado usado em fabricação)."
+      },
+      {
+        id: 12,
+        topic: "Resources Vocabulary",
+        statement: "No exercício de preenchimento de lacunas (Cap. 14, ex. 2e), a frase diz: 'We deplete the Earth when _______ is higher than supply'. Qual palavra completa o sentido?",
+        correctKey: "C",
+        options: {
+          A: "damage",
+          B: "land",
+          C: "demand",
+          D: "survive",
+          E: "fossil fuel"
+        },
+        justification: "Demand significa demanda ou procura. Esgotamos a Terra quando a demanda (procura) é maior do que a oferta (supply)."
+      },
+      {
+        id: 13,
+        topic: "Resources Vocabulary",
+        statement: "O verbo <b>SURVIVE</b>, trabalhado na cruzadinha e nos textos do livro, é definido como:",
+        correctKey: "B",
+        options: {
+          A: "To destroy or cause damage to nature",
+          B: "To remain alive or in existence",
+          C: "To convert waste into new reusable items",
+          D: "To supply products to stores and markets",
+          E: "To produce toxic gases in factories"
+        },
+        justification: "Survive significa sobreviver (permanecer vivo ou em existência diante de condições difíceis)."
+      },
+
+      // TEMA 5: FOOTPRINTS & DEFINITIONS (Capítulo 15)
+      {
+        id: 14,
+        topic: "Ecological Footprint & Terms",
+        statement: "Na atividade de associação do Capítulo 15 (ex. 2), qual é a definição para a palavra <b>BIODIVERSITY</b>?",
+        correctKey: "D",
+        options: {
+          A: "The totality of the natural world excluding humans.",
+          B: "The natural environment in which a species lives.",
+          C: "The condition of being in danger or at risk.",
+          D: "The variability among living organisms on the Earth.",
+          E: "The act or process of consuming resources."
+        },
+        justification: "Biodiversity (biodiversidade) é definida como a variabilidade e diversidade entre os organismos vivos na Terra."
+      },
+      {
+        id: 15,
+        topic: "Ecological Footprint & Terms",
+        statement: "No Capítulo 15, o termo <b>THREAT</b> é definido como 'The condition of being in danger or at risk'. Como transformamos essa palavra no adjetivo 'ameaçador'?",
+        correctKey: "B",
+        options: {
+          A: "Threatful",
+          B: "Threatening",
+          C: "Threatenly",
+          D: "Threatness",
+          E: "Threatable"
+        },
+        justification: "O adjetivo derivado do substantivo threat (ameaça) é threatening (ameaçador/a), como no ex. 3d ('threatening')."
+      },
+      {
+        id: 16,
+        topic: "Ecological Footprint & Terms",
+        statement: "No texto do site <i>Treehugger</i> (Capítulo 15), o termo <b>ECOLOGICAL FOOTPRINT</b> é explicado como uma análise que mede:",
+        correctKey: "A",
+        options: {
+          A: "Human consumption of natural resources in comparison to Earth's ecological capacity to regenerate them.",
+          B: "The total number of miles a person walks on the soil every year.",
+          C: "The amount of carbon dioxide emitted only by airplanes.",
+          D: "The price paid by consumers for organic food in supermarkets.",
+          E: "The physical size of human feet across different regions of the world."
+        },
+        justification: "Ecological footprint (pegada ecológica) mede o consumo humano de recursos naturais em comparação com a capacidade da Terra de regenerá-los."
+      },
+
+      // TEMA 6: THE 5 Rs OF SUSTAINABILITY (Capítulo 16)
+      {
+        id: 17,
+        topic: "5 Rs & Sustainability",
+        statement: "No Capítulo 16, sobre os 5 Rs da sustentabilidade, qual das ações corresponde ao R de <b>REFUSE</b>?",
+        correctKey: "E",
+        options: {
+          A: "We must refuse organic scraps into fertile soil.",
+          B: "We must refuse materials such as paper and plastic bags.",
+          C: "We must refuse unnecessary consumption of energy.",
+          D: "We must refuse items as much as possible before discarding.",
+          E: "We must refuse products that harm our health and the environment."
+        },
+        justification: "Refuse (recusar) aplica-se a recusar produtos que causam danos à saúde e ao meio ambiente ('products that harm our health and the environment')."
+      },
+      {
+        id: 18,
+        topic: "5 Rs & Sustainability",
+        statement: "Na coluna dos 5 Rs do Capítulo 16, qual ação corresponde diretamente ao R de <b>ROT</b>?",
+        correctKey: "C",
+        options: {
+          A: "Unnecessary consumption.",
+          B: "Materials such as paper and plastic bags.",
+          C: "Organic scraps.",
+          D: "Products that harm our health.",
+          E: "Water from tank trucks."
+        },
+        justification: "Rot (compostar/decompor) refere-se ao reaproveitamento de restos orgânicos ('organic scraps') para adubo."
+      },
+      {
+        id: 19,
+        topic: "5 Rs & Sustainability",
+        statement: "No Capítulo 16 (página Perspectives), qual é a melhor definição para o verbo <b>SUSTAIN</b>?",
+        correctKey: "A",
+        options: {
+          A: "To keep in existence; maintain, continue, or prolong; to give support.",
+          B: "To alarm, scare, or arouse fear in a population.",
+          C: "To damage the existence of something by forceful actions.",
+          D: "To buy unnecessary items in high-end stores.",
+          E: "To pollute rivers with industrial liquids."
+        },
+        justification: "Sustain (sustentar/manter) é definido no livro como manter em existência, prolongar, apoiar ou conservar."
+      },
+      {
+        id: 20,
+        topic: "5 Rs & Sustainability",
+        statement: "Complete corretamente a frase da página de perspectivas (Cap. 16, ex. 2a): 'That restaurant only buys food from suppliers adept of _________ agriculture.'",
+        correctKey: "D",
+        options: {
+          A: "Sustainably",
+          B: "Sustain",
+          C: "Sustainability",
+          D: "Sustainable",
+          E: "Unsustain"
+        },
+        justification: "A lacuna exige o adjetivo 'sustainable' (sustentável) para qualificar o substantivo 'agriculture' (agricultura sustentável)."
+      }
+    ];
+
+    // ESTADO DA APLICAÇÃO E EMBARALHAMENTO DO GABARITO (Fisher-Yates)
+    let processedQuestions = [];
+    let userAnswers = {};
+    let checkedQuestions = {};
+    let currentQuestionIndex = 0;
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function initQuizData() {
+      processedQuestions = rawQuestions.map((q) => {
+        const originalKeys = ['A', 'B', 'C', 'D', 'E'];
+        const optionsList = originalKeys.map(key => ({
+          originalKey: key,
+          text: q.options[key]
+        }));
+
+        // Embaralhamento real e aleatório da posição das opções
+        const shuffledOptions = shuffleArray(optionsList);
+
+        const newLetterLabels = ['A', 'B', 'C', 'D', 'E'];
+        let mappedCorrectLetter = '';
+
+        const finalOptions = shuffledOptions.map((opt, index) => {
+          const currentLabel = newLetterLabels[index];
+          if (opt.originalKey === q.correctKey) {
+            mappedCorrectLetter = currentLabel;
+          }
+          return {
+            label: currentLabel,
+            text: opt.text,
+            originalKey: opt.originalKey
+          };
+        });
+
+        return {
+          ...q,
+          displayOptions: finalOptions,
+          correctDisplayLetter: mappedCorrectLetter
+        };
+      });
+    }
+
+    function buildNavGrid() {
+      const navGrid = document.getElementById('nav-grid');
+      navGrid.innerHTML = '';
+      for (let i = 0; i < processedQuestions.length; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'nav-btn';
+        btn.id = `nav-btn-${i}`;
+        btn.innerText = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        navGrid.appendChild(btn);
+      }
+      updateNavStatus();
+    }
+
+    function updateNavStatus() {
+      for (let i = 0; i < processedQuestions.length; i++) {
+        const btn = document.getElementById(`nav-btn-${i}`);
+        if (!btn) continue;
+        btn.classList.remove('active', 'correct', 'incorrect');
+
+        if (i === currentQuestionIndex) {
+          btn.classList.add('active');
+        }
+
+        if (checkedQuestions[i]) {
+          const isCorrect = userAnswers[i] === processedQuestions[i].correctDisplayLetter;
+          if (isCorrect) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('incorrect');
+          }
+        }
+      }
+    }
+
+    function renderQuestion(index) {
+      const q = processedQuestions[index];
+
+      document.getElementById('question-title').innerText = `Questão ${index + 1} de 20`;
+      document.getElementById('topic-badge').innerText = q.topic;
+      document.getElementById('statement-text').innerHTML = q.statement;
+
+      const optionsContainer = document.getElementById('options-list');
+      optionsContainer.innerHTML = '';
+
+      const isChecked = checkedQuestions[index];
+
+      q.displayOptions.forEach((opt) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'option-item';
+
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = `option-${index}`;
+        radio.value = opt.label;
+        radio.id = `opt-${opt.label}`;
+        radio.disabled = !!isChecked;
+
+        if (userAnswers[index] === opt.label) {
+          radio.checked = true;
+          itemDiv.classList.add('selected');
+        }
+
+        if (isChecked) {
+          if (opt.label === q.correctDisplayLetter) {
+            itemDiv.classList.add('correct-bg');
+          } else if (userAnswers[index] === opt.label) {
+            itemDiv.classList.add('incorrect-bg');
+          }
+        } else {
+          itemDiv.onclick = () => selectOption(index, opt.label);
+        }
+
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'option-text';
+        labelSpan.innerHTML = `<strong>${opt.label})</strong> ${opt.text}`;
+
+        itemDiv.appendChild(radio);
+        itemDiv.appendChild(labelSpan);
+        optionsContainer.appendChild(itemDiv);
+      });
+
+      const feedbackBox = document.getElementById('feedback-box');
+      const feedbackText = document.getElementById('feedback-text');
+      if (isChecked) {
+        feedbackText.innerText = q.justification;
+        feedbackBox.classList.add('show');
+      } else {
+        feedbackBox.classList.remove('show');
+      }
+
+      const btnCheck = document.getElementById('btn-check');
+      btnCheck.disabled = !userAnswers[index] || isChecked;
+
+      const btnNext = document.getElementById('btn-next');
+      if (index === processedQuestions.length - 1) {
+        btnNext.innerText = 'Finish';
+        btnNext.classList.add('btn-finish');
+      } else {
+        btnNext.innerText = 'Next';
+        btnNext.classList.remove('btn-finish');
+      }
+
+      const btnPrev = document.getElementById('btn-prev');
+      btnPrev.disabled = index === 0;
+
+      updateNavStatus();
+    }
+
+    function selectOption(qIndex, label) {
+      if (checkedQuestions[qIndex]) return;
+      userAnswers[qIndex] = label;
+
+      const items = document.querySelectorAll('.option-item');
+      items.forEach(item => item.classList.remove('selected'));
+
+      const radio = document.getElementById(`opt-${label}`);
+      if (radio) {
+        radio.checked = true;
+        radio.closest('.option-item').classList.add('selected');
+      }
+
+      document.getElementById('btn-check').disabled = false;
+    }
+
+    function checkAnswer() {
+      if (!userAnswers[currentQuestionIndex]) return;
+      checkedQuestions[currentQuestionIndex] = true;
+      renderQuestion(currentQuestionIndex);
+    }
+
+    function jumpToQuestion(index) {
+      currentQuestionIndex = index;
+      renderQuestion(currentQuestionIndex);
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < processedQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion(currentQuestionIndex);
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestion(currentQuestionIndex);
+      }
+    }
+
+    function finishQuiz() {
+      let totalCorrect = 0;
+      let topicErrors = {};
+      let topicTotals = {};
+
+      processedQuestions.forEach((q, idx) => {
+        const topic = q.topic;
+        if (!topicTotals[topic]) {
+          topicTotals[topic] = 0;
+          topicErrors[topic] = 0;
+        }
+        topicTotals[topic]++;
+
+        const userAns = userAnswers[idx];
+        if (userAns === q.correctDisplayLetter) {
+          totalCorrect++;
+        } else {
+          topicErrors[topic]++;
+        }
+      });
+
+      const totalQuestions = processedQuestions.length;
+      const totalIncorrect = totalQuestions - totalCorrect;
+      
+      // Nota final valendo 10,0 (cada questão equivale a 0,5 ponto)
+      const score = (totalCorrect * 0.5).toFixed(1);
+
+      const correctPct = Math.round((totalCorrect / totalQuestions) * 100);
+      const incorrectPct = Math.round((totalIncorrect / totalQuestions) * 100);
+
+      document.getElementById('score-display').innerText = `Sua Nota: ${score.replace('.', ',')} / 10,0`;
+      document.getElementById('stat-correct').innerText = `${totalCorrect} (${correctPct}%)`;
+      document.getElementById('stat-incorrect').innerText = `${totalIncorrect} (${incorrectPct}%)`;
+
+      const diagnosticsList = document.getElementById('diagnostics-list');
+      diagnosticsList.innerHTML = '';
+
+      let needsRevision = false;
+
+      for (const topic in topicTotals) {
+        const errors = topicErrors[topic];
+        const total = topicTotals[topic];
+        const errorPct = (errors / total) * 100;
+
+        if (errorPct > 25) {
+          needsRevision = true;
+          const li = document.createElement('li');
+          let recommendationText = `<strong>${topic}:</strong> Recomenda-se revisar o vocabulário e os conceitos deste tópico (Taxa de Erro: ${Math.round(errorPct)}%).`;
+          li.innerHTML = recommendationText;
+          diagnosticsList.appendChild(li);
+        }
+      }
+
+      if (!needsRevision) {
+        const li = document.createElement('li');
+        li.innerHTML = "<strong>Excelente Desempenho!</strong> Você dominou o vocabulário dos Capítulos 13 a 16!";
+        diagnosticsList.appendChild(li);
+      }
+
+      document.getElementById('modal-overlay').style.display = 'flex';
+    }
+
+    function restartQuiz() {
+      userAnswers = {};
+      checkedQuestions = {};
+      currentQuestionIndex = 0;
+      document.getElementById('modal-overlay').style.display = 'none';
+      initQuizData();
+      buildNavGrid();
+      renderQuestion(0);
+    }
+
+    window.onload = function() {
+      initQuizData();
+      buildNavGrid();
+      renderQuestion(0);
+    };
+  </script>
+</body>
+</html>
